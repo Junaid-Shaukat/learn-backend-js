@@ -1,0 +1,2 @@
+// Name of the database that will be created in the mongodb cloud. This name will be appended in mongodb uri for monogodb to understand which db is connected or created.
+export const DB_Name = "videotube"
