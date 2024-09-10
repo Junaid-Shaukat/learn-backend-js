@@ -2,6 +2,7 @@
 //require('dotenv').config({path:'./env'}) // complete and corect syntax
 
 import connectDB from "./db/index.js";
+
 // always add the full name with extension like ./db/index.js
 
 // for using this syntax we have to make the changes in the package.json file because it is the experimental feature of dotenv package. 
@@ -11,6 +12,7 @@ import connectDB from "./db/index.js";
 "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules /index.js"
   },
+
 
 */
 import dotenv from 'dotenv';
