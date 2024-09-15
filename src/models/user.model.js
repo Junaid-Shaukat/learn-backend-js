@@ -38,7 +38,7 @@ const userSchema = new Schema(
         ref: "Video",
       },
     ],
-    pasword: {
+    password: {
       type: String,
       required: ["true", "Password is required"],
     },
@@ -52,7 +52,7 @@ const userSchema = new Schema(
 // hooks in mongoose -> pre and more -> middleware
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.pasword = await bcrypt.hash(this.pasword, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
@@ -89,3 +89,8 @@ userSchema.methods.generateRefreshToken = function () {
 };
 
 export const User = mongoose.model("User", userSchema);
+
+
+
+
+
