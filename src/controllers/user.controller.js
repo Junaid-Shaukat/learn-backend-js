@@ -17,15 +17,15 @@ const registerUser = asyncHandler(async (req, res) => {
   // return respones - (res)
 
   const { fullName, email, username, password } = req.body;
-  console.log("email : ", email);
-  console.log("password : ", password);
+//   console.log("email : ", email);
+//   console.log("password : ", password);
 
   if (
     [fullName, email, username, password].some((field) => field?.trim() === "")
   ) {
     throw new ApiError(400, "All field are required");
   }
-  const existedUser = User.findOne({
+  const existedUser = await User.findOne({
     $or: [{ email }, { username }],
   })
   if(existedUser){
@@ -55,9 +55,16 @@ const registerUser = asyncHandler(async (req, res) => {
     username:username.toLowerCase()
  })
 
- const createdUser = User.findById(user._id).select(
-    "-password -refreshToken"
- ) 
+//  const createdUser = User.findById(user._id).select(
+//     "-password -refreshToken"
+//  ) 
+
+
+  // Convert the user object to a plain JS object to avoid circular structure issues
+
+  const createdUser = user.toObject();
+  delete createdUser.password;
+  delete createdUser.refreshToken; // If refreshToken exists
 
 if(!createdUser){
     throw new ApiError(500,"Something went wrong while creating user")}
