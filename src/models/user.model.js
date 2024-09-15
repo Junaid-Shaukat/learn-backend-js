@@ -52,7 +52,7 @@ const userSchema = new Schema(
 // hooks in mongoose -> pre and more -> middleware
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.pasword = bcrypt.hash(this.pasword, 10);
+  this.pasword = await bcrypt.hash(this.pasword, 10);
   next();
 });
 
