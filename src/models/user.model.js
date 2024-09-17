@@ -87,7 +87,7 @@ userSchema.methods.generateRefreshToken = function () {
     }
   );
 };
-
+// User -> users in data base as a folder
 export const User = mongoose.model("User", userSchema);
 
 
