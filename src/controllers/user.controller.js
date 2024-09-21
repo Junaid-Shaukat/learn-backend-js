@@ -305,6 +305,7 @@ const updateUserCoverImage = asyncHandler(async(req,res)=>{
 
   return res.status(200).jsone(new ApiResponse(200,user,"cover image updated successfully"))
 })
+
 export {
   registerUser,
   loginUser,
